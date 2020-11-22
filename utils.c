@@ -15,9 +15,10 @@ int lineCounter(FILE *dictionary)
 	if ( dictionary != NULL )
 	{
 		char line[MAX_LINE];
-		for( words; (!feof(dictionary)); words++ )
+		for( int i = words; (!feof(dictionary)); i++ )
 		{
 			fgets(line, MAX_LINE, dictionary);
+			words = i;
 		}
 		rewind(dictionary);
 		words--;
@@ -41,6 +42,5 @@ char* getLine(FILE *dictionary, int lineNumber)
 
 int getRandomNumber(int min, int max)
 {
-	srand(time(0));
 	return ((rand() % (max - min + 1)) + 1);
 }

@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 			}
 			break;
 		case 2:
-			if (checkIfFileExists(argv[1]) == 1)
+			if (checkIfFileExists(argv[1]) == 0)
 			{
 				dictionary = fopen(argv[1], "r");
 			}
