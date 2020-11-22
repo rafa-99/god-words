@@ -1,31 +1,30 @@
-#include "logic.h"
-#include <stdlib.h>
+#include "session.h"
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
 int main(int argc, char **argv)
 {
-	char *dictionary = (char *)calloc(MAX_LINE, sizeof(char));
 
+	FILE *dictionary = NULL;
 	switch (argc)
 	{
 	case 1:
 		if (checkIfFileExists("dictionary.dict") == 0)
 		{
-			strcpy(dictionary, "dictionary.dict");
+			dictionary = fopen("dictionary.dict", "r");
 		}
 		break;
 	case 2:
 		if (checkIfFileExists(argv[1]) == 1)
 		{
-			strcpy(dictionary, argv[1]);
+			dictionary = fopen(argv[1], "r");
 		}
 	}
 
 	if (dictionary != NULL)
 	{
-		char *string = getLine(dictionary, getRandomNumber(1, lineCounter(dictionary)));
-		free(dictionary);
+		startSession(dictionary);
+		fclose(dictionary);
 	}
 
 	return 0;
