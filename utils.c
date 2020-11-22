@@ -14,27 +14,25 @@ int lineCounter(FILE *dictionary)
 	int words = 0;
 	if ( dictionary != NULL )
 	{
-		char line[256];
-		while ( !feof(dictionary) )
+		char line[MAX_LINE];
+		for( words; (!feof(dictionary)); words++ )
 		{
-			fgets(line, sizeof(line), dictionary);
-			words++;
+			fgets(line, MAX_LINE, dictionary);
 		}
-		words--;
 		rewind(dictionary);
+		words--;
 	}
-
 	return words;
 }
 
 char* getLine(FILE *dictionary, int lineNumber)
 {
-	char *line = (char *) calloc(256, sizeof(char));
+	char *line = (char *) calloc(MAX_LINE, sizeof(char));
 	if ( dictionary != NULL )
 	{
-		for ( int i = 0; (!feof(dictionary) && i != lineNumber - 1); i++)
+		for ( int i = 0; (!feof(dictionary) && i != lineNumber ); i++)
 		{
-			fgets(line, sizeof(line), dictionary);
+			fgets(line, MAX_LINE, dictionary);
 		}
 		rewind(dictionary);
 	}
