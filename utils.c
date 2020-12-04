@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <time.h>
+#include <sys/time.h>
 #include "utils.h"
 
 int checkIfFileExists(char *path)
@@ -42,5 +43,10 @@ char* getLine(FILE *dictionary, int lineNumber)
 
 int getRandomNumber(int min, int max)
 {
+	// Adding Randomize Time Values for Less Chances of Running into Seed Collisions
+	struct timeval randtime;
+	gettimeofday(&randtime,NULL);
+	srand((randtime.tv_sec * 100 + time(NULL)) + (randtime.tv_usec / 100 - time(NULL)));
+
 	return ((rand() % (max - min + 1)) + 1);
 }
