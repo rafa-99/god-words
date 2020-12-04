@@ -19,7 +19,9 @@ Since TRT was written in HolyC and this random word generator is written in C I 
 
 ### Run
 If you already have a `dictionary.dict` file in your path, just run:
+
 `ouija`
 
 If you have the file saved in another folder, just type:
+
 `ouija /path/to/dictionary`
