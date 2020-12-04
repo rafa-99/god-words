@@ -1,13 +1,24 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
+#include <unistd.h>
 #include <sys/time.h>
 #include "utils.h"
 
 int checkIfFileExists(char *path)
 {
 	return access(path, F_OK);
+}
+
+int numerize(char *string)
+{
+	int val = 0;
+	for( int i = 0; i < strlen(string); i++ )
+	{
+		val += string[i];
+	}
+	return val;
 }
 
 int lineCounter(FILE *dictionary)
@@ -41,12 +52,12 @@ char* getLine(FILE *dictionary, int lineNumber)
 	return line;
 }
 
-int getRandomNumber(int min, int max)
+int getRandomNumber(int min, int max, char *question)
 {
 	// Adding Randomize Time Values for Less Chances of Running into Seed Collisions
 	struct timeval randtime;
 	gettimeofday(&randtime,NULL);
-	srand((randtime.tv_sec * 100 + time(NULL)) + (randtime.tv_usec / 100 - time(NULL)));
+	srand(((randtime.tv_sec * 100) + time(NULL) * numerize(question)) + ((randtime.tv_usec / 100) - time(NULL) * numerize(question)));
 
 	return ((rand() % (max - min + 1)) + 1);
 }

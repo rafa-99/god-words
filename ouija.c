@@ -1,6 +1,6 @@
-#include "session.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "session.h"
 
 int main(int argc, char **argv)
 {
@@ -26,6 +26,10 @@ int main(int argc, char **argv)
 	{
 		startSession(dictionary);
 		fclose(dictionary);
+	}
+	else
+	{
+		printf("No Dictionary Found\n");
 	}
 
 	return 0;
