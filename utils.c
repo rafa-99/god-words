@@ -54,10 +54,9 @@ char* getLine(FILE *dictionary, int lineNumber)
 
 int getRandomNumber(int min, int max, char *question)
 {
-	// Adding Randomize Time Values for Less Chances of Running into Seed Collisions
-	struct timeval randtime;
-	gettimeofday(&randtime,NULL);
-	srand(((randtime.tv_sec * 100) + time(NULL) * numerize(question)) + ((randtime.tv_usec / 100) - time(NULL) * numerize(question)));
+	struct timespec s;
+	clock_gettime(CLOCK_REALTIME, &s);
+	srand(s.tv_nsec * numerize(question));
 
-	return ((rand() % (max - min + 1)) + 1);
+	return ((rand() % (max - min + 1)) + min);
 }
