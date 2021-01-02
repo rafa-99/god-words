@@ -1,62 +1,67 @@
+#include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/time.h>
 #include <time.h>
 #include <unistd.h>
-#include <sys/time.h>
-#include "utils.h"
 
-int checkIfFileExists(char *path)
+int
+checkIfFileExists (char *path)
 {
-	return access(path, F_OK);
+	return access (path, F_OK);
 }
 
-int numerize(char *string)
+int
+numerize (char *string)
 {
 	int val = 0;
-	for( int i = 0; i < strlen(string); i++ )
+	for (int i = 0; i < strlen (string); i++)
 	{
 		val += string[i];
 	}
 	return val;
 }
 
-int lineCounter(FILE *dictionary)
+int
+lineCounter (FILE *dictionary)
 {
 	int words = 0;
-	if ( dictionary != NULL )
+	if (dictionary != NULL)
 	{
 		char line[MAX_LINE];
-		for( int i = words; (!feof(dictionary)); i++ )
+		for (int i = words; (!feof (dictionary)); i++)
 		{
-			fgets(line, MAX_LINE, dictionary);
+			fgets (line, MAX_LINE, dictionary);
 			words = i;
 		}
-		rewind(dictionary);
+		rewind (dictionary);
 		words--;
 	}
 	return words;
 }
 
-char* getLine(FILE *dictionary, int lineNumber)
+char *
+getLine (FILE *dictionary, int lineNumber)
 {
-	char *line = (char *) calloc(MAX_LINE, sizeof(char));
-	if ( dictionary != NULL )
+	char *line = (char *)calloc (MAX_LINE, sizeof (char));
+	if (dictionary != NULL)
 	{
-		for ( int i = 0; (!feof(dictionary) && i != lineNumber ); i++)
+		for (int i = 0; (!feof (dictionary) && i != lineNumber); i++)
 		{
-			fgets(line, MAX_LINE, dictionary);
+			fgets (line, MAX_LINE, dictionary);
 		}
-		rewind(dictionary);
+		rewind (dictionary);
 	}
 	return line;
 }
 
-int getRandomNumber(int min, int max, char *question)
+int
+getRandomNumber (int min, int max, char *question)
 {
 	struct timespec s;
-	clock_gettime(CLOCK_REALTIME, &s);
-	srand(s.tv_nsec * numerize(question));
+	clock_gettime (CLOCK_REALTIME, &s);
+	srand (s.tv_nsec * numerize (question));
 
-	return ((rand() % (max - min + 1)) + min);
+	return ((rand () % (max - min + 1)) + min);
 }

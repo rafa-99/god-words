@@ -1,9 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "session.h"
 #include "utils.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-int main(int argc, char **argv)
+int
+main (int argc, char **argv)
 {
 
 	FILE *dictionary = NULL;
@@ -11,26 +12,26 @@ int main(int argc, char **argv)
 	switch (argc)
 	{
 		case 1:
-			if (checkIfFileExists("dictionary.dict") == 0)
+			if (checkIfFileExists ("dictionary.dict") == 0)
 			{
-				dictionary = fopen("dictionary.dict", "r");
+				dictionary = fopen ("dictionary.dict", "r");
 			}
 			break;
 		case 2:
-			if (checkIfFileExists(argv[1]) == 0)
+			if (checkIfFileExists (argv[1]) == 0)
 			{
-				dictionary = fopen(argv[1], "r");
+				dictionary = fopen (argv[1], "r");
 			}
 	}
 
 	if (dictionary != NULL)
 	{
-		startSession(dictionary);
-		fclose(dictionary);
+		startSession (dictionary);
+		fclose (dictionary);
 	}
 	else
 	{
-		printf("No Dictionary Found\n");
+		printf ("No Dictionary Found\n");
 	}
 
 	return 0;
