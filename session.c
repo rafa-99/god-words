@@ -13,11 +13,11 @@ startSession (FILE *dictionary)
 		char reload = '\0';
 
 		printf ("WELCOME\n"
+				"Type something to get an answer\n"
 				"Type GOODBYE to exit\n\n");
 
 		while (strcmp (question, "GOODBYE\n") != 0)
 		{
-			printf ("Enter a question: ");
 			fgets (question, MAX_LINE, stdin);
 
 			if (strcmp (question, "GOODBYE\n") != 0)

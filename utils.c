@@ -59,9 +59,8 @@ getLine (FILE *dictionary, int lineNumber)
 int
 getRandomNumber (int min, int max, char *question)
 {
-	struct timespec s;
-	clock_gettime (CLOCK_REALTIME, &s);
-	srand (s.tv_nsec * numerize (question));
-
-	return ((rand () % (max - min + 1)) + min);
+	struct timeval randtime;
+	gettimeofday(&randtime,NULL);
+	srand(((randtime.tv_sec * 100) + time(NULL)) + ((randtime.tv_usec / 100) - time(NULL)));
+	return ((rand() % (max - min + 1)) + 1);
 }

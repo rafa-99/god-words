@@ -1,13 +1,13 @@
 build: clean
-	cc -o ouija ouija.c session.c utils.c
+	cc -o trt tongues.c session.c utils.c
 
 clean:
-	rm -rf ouija
+	rm -rf trt
 
 install: build
 	mkdir -p /usr/local/bin
-	cp -f ouija /usr/local/bin
+	cp -f trt /usr/local/bin
 	chmod 755 /usr/local/bin
 
 uninstall:
-	rm -rf /usr/local/bin/ouija
+	rm -rf /usr/local/bin/trt
