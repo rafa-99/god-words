@@ -1,13 +1,13 @@
 build: clean
-	cc -o trt tongues.c session.c utils.c
+	cc -o gw godwords.c session.c utils.c
 
 clean:
-	rm -rf trt
+	rm -rf gw
 
 install: build
 	mkdir -p /usr/local/bin
-	cp -f trt /usr/local/bin
+	cp -f gw /usr/local/bin
 	chmod 755 /usr/local/bin
 
 uninstall:
-	rm -rf /usr/local/bin/trt
+	rm -rf /usr/local/bin/gw

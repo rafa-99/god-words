@@ -1,10 +1,10 @@
-# Timer Random Tongues
-Tongues based on time and question randomness
+# God Words
+God words based on time and question randomness
 
 ## Inspiration
-Inspired by Terry Davis TempleOS Timer Random Tongues which he used to communicate with God.
+Inspired by Terry Davis TempleOS "God Words" which he used to communicate with God.
 
-![TempleOS Timer Random Tongues](images/image.png)
+![TempleOS God Words](images/image.png)
 
 ## How to Use
 
@@ -18,8 +18,8 @@ Inspired by Terry Davis TempleOS Timer Random Tongues which he used to communica
 ### Run
 If you already have a `dictionary.dict` file in your path, just run:
 
-`trt`
+`gw`
 
 If you have the file saved in another folder, just type:
 
-`trt /path/to/dictionary`
+`gw /path/to/dictionary`
